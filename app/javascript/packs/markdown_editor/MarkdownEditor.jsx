@@ -1,9 +1,6 @@
 import React, { useState, useCallback } from "react";
-import { throttle, debounce } from "lodash";
 import Showdown from "showdown";
-
 import classNames from "classnames";
-
 import Toolbar from "./Toolbar";
 
 const converter = new Showdown.Converter({
@@ -15,7 +12,7 @@ const converter = new Showdown.Converter({
   openLinksInNewWindow: true
 });
 
-converter.setFlavor('github');
+converter.setFlavor("github");
 
 const previewHTML = markdown => {
   return converter.makeHtml(markdown);
@@ -26,10 +23,9 @@ const getText = () => {
 };
 
 const scrollPreview = (e, previewRef) => {
-   const proportion = e.currentTarget.scrollTop / e.currentTarget.scrollHeight;
-   previewRef.current.scrollTop = proportion * previewRef.current.scrollHeight;
+  const proportion = e.currentTarget.scrollTop / e.currentTarget.scrollHeight;
+  previewRef.current.scrollTop = proportion * previewRef.current.scrollHeight;
 };
-const emptyFn = () => {};
 
 export default function MarkdownEditor() {
   const [value, setValue] = React.useState(getText());
@@ -46,6 +42,14 @@ export default function MarkdownEditor() {
   const showPreview = currentView == "preview" || showBoth;
 
   const previewRef = React.useRef(null);
+
+  const attachToEditorScroll = showBoth && autoScroll;
+  const onEditorScroll =
+    (attachToEditorScroll &&
+      (e => {
+        scrollPreview(e, previewRef);
+      })) ||
+    null;
 
   return (
     <div className="markdown_editor">
@@ -64,12 +68,16 @@ export default function MarkdownEditor() {
             className={classNames("markdown_editor__editor", "form-control", { monospace: fontStyle == "monospace" })}
             value={value}
             onChange={event => setValue(event.target.value)}
-            onScroll={showBoth && autoScroll && ((e) => {scrollPreview(e, previewRef)}) || null}
+            onScroll={onEditorScroll}
           />
         )}
         {showPreview && (
-          <div className="markdown_editor__preview" >
-            <div ref={previewRef} className="markdown_editor__preview_content border border-secondary" dangerouslySetInnerHTML={{ __html: previewHTML(value) }} />
+          <div className="markdown_editor__preview">
+            <div
+              ref={previewRef}
+              className="markdown_editor__preview_content border border-secondary"
+              dangerouslySetInnerHTML={{ __html: previewHTML(value) }}
+            />
           </div>
         )}
       </div>

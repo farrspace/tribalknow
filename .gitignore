@@ -66,3 +66,6 @@ yarn-debug.log*
 docker-compose.yml
 .yarnrc
 .bash_history
+
+config/initializers/0_env.rb
+/.yarn/
