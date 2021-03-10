@@ -59,7 +59,7 @@ class User < ApplicationRecord
     end
   end
 
-  after_create :send_admin_email
+  # after_create :send_admin_email
   def send_admin_email
     if requires_admin_approval?
       AdminMailer.new_user_waiting_for_approval(self).deliver
