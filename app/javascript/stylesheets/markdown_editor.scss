@@ -1,3 +1,13 @@
+.files .file-drop .file-drop-target{
+  width: 100%;
+  min-height: 3em;
+  border: 1px solid black;
+
+  &.file-drop-dragging-over-target {
+    background-color: $gray-200;
+  }
+}
+
 .markdown_editor {
 }
 
