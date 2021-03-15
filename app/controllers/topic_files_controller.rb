@@ -8,11 +8,9 @@ class TopicFilesController < ApplicationController
 
   def create
     @topic = Topic.friendly.find(params[:topic_id])
-    asset = @topic.topic_files.create :asset=>params[:file]
-    respond_to do |format|
-      return format.json { render :json=>asset.as_json.merge(:thumb_url=>asset.asset.url(:thumb), :url=>asset.asset.url) }
-    end
-    return head :ok
+    @topic.topic_files.create asset: params[:file]
+
+    render "index.json"
   end
 
   def destroy
