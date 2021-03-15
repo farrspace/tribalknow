@@ -79,14 +79,6 @@ export default function Toolbar({ currentView, setCurrentView, fontStyle, setFon
           </label>
         </div>
       )}
-
-      <div className="form-check form-check-inline border py-1 px-2 align-bottom bg-light">
-        <span>
-          <i className="fa fa-question-circle mr-1" />
-          Questions about the topic editor? Please message{" "}
-          <a href="slack://channel?team=T024GT5CH&id=C01NSETA1EF">@brian in #q-help</a> on slack.
-        </span>
-      </div>
     </div>
   );
 }

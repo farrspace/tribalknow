@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MarkdownEditor from "./markdown_editor/MarkdownEditor.jsx";
 
-const form = document.getElementsByClassName("edit_topic")[0];
+const form = document.querySelector("form.edit_topic") || document.querySelector("form.new_topic");
 const railsTextArea = document.getElementById("topic_content");
 
 form.onsubmit = function () {
-  const reactTextArea = document.getElementsByClassName("markdown_editor__editor")[0];
+  const reactTextArea = document.querySelector(".markdown_editor__editor");
   railsTextArea.value = reactTextArea.value;
 };
 
