@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import MarkdownEditor from "./markdown_editor/MarkdownEditor.jsx";
+import Files from "./markdown_editor/Files.jsx";
 
 const form = document.querySelector("form.edit_topic") || document.querySelector("form.new_topic");
 const railsTextArea = document.getElementById("topic_content");
@@ -14,3 +15,6 @@ railsTextArea.style.cssText = "display: none;";
 
 const mountPoint = document.getElementById("react-markdown-editor");
 ReactDOM.render(<MarkdownEditor />, mountPoint);
+
+const filesMountPoint = document.getElementById("editor-files-mount");
+ReactDOM.render(<Files />, filesMountPoint);

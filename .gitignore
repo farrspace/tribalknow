@@ -65,4 +65,7 @@ yarn-debug.log*
 .yarn-integrity
 docker-compose.yml
 .yarnrc
+/.yarn
+/coverage
+
 .bash_history
