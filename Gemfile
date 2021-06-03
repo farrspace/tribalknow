@@ -78,6 +78,8 @@ gem 'faraday'
 gem 'dotenv-rails'
 gem 'dotenv-deployment'
 
+gem 'rack-attack'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
